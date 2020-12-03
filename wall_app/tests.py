@@ -17,10 +17,10 @@ class RegisterTest(TestCase):
     def test_register_user(self):
         request = self.factory.post('/register', user_data)
         response = UserCreate.as_view()(request)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 201)             # 201 status created
 
     def test_post_message(self):
         request = self.factory.post('/message', {'message': 'Hello World'})
-        response = WallPostViewSet.as_view()(request)
-        self.assertEqual(response.status_code, 401)
+        response = WallPostViewSet.as_view({'post': 'create'})(request)
+        self.assertEqual(response.status_code, 201)
 
