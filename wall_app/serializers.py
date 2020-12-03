@@ -8,7 +8,7 @@ class WallPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = WallPost
         # owner = serializers.ReadOnlyField(source='owner.username')
-        fields = ['id', 'text']
+        fields = ['id', 'message']
         ordering = ['created']
 
 
