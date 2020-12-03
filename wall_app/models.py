@@ -6,9 +6,7 @@ from django.db import models
 class WallPost(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
-
-    # owner = models.ForeignKey('auth.User', related_name='snippets', on_delete=models.CASCADE)
-    # highlighted = models.TextField()
+    owner = models.ForeignKey('auth.User', related_name='wall_post', on_delete=models.CASCADE)
 
     # def save(self, *args, **kwargs):
     #     """

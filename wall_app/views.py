@@ -29,7 +29,10 @@ class UserViewSet(viewsets.ModelViewSet):
 class WallPostViewSet(viewsets.ModelViewSet):
     queryset = WallPost.objects.all().order_by('-created')
     serializer_class = WallPostSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class UserCreate(generics.CreateAPIView):
@@ -38,3 +41,4 @@ class UserCreate(generics.CreateAPIView):
     def post(self, request):
         super().post(request).data
         return Response({"success": True}, status=201)
+
