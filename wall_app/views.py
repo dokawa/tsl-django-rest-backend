@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets, generics
 from rest_framework import permissions
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 
 from wall_app.models import WallPost
