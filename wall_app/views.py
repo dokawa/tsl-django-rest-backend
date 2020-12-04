@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets, generics
 from rest_framework import permissions
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.response import Response
 
 from wall_app.models import WallPost
 from wall_app.serializers import UserSerializer, WallPostSerializer
@@ -42,6 +40,4 @@ class UserCreate(generics.CreateAPIView):
     def post(self, request):
         super().post(request).data
         return Response({"success": True}, status=201)
-
-
 
