@@ -20,6 +20,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from wall_app import views
 from wall_app.views import UserViewSet, WallPostViewSet
 
+from rest_framework.authtoken.views import obtain_auth_token
+
 user_list = UserViewSet.as_view({
     'get': 'list'
 })
@@ -40,6 +42,6 @@ urlpatterns = [
     path('users/', user_list, name='user-list'),
     path('register/', views.UserCreate.as_view()),
     path('api-auth/', include('rest_framework.urls')),
-    # path('token/', views.UserAuth.as_view())
-    path('token/', ObtainAuthToken.as_view())
+    path('token/', ObtainAuthToken.as_view()),
+    # path('api-auth/', include('rest_framework.urls')),
 ]

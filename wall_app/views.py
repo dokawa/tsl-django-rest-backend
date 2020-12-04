@@ -43,3 +43,5 @@ class UserCreate(generics.CreateAPIView):
         super().post(request).data
         return Response({"success": True}, status=201)
 
+
+
