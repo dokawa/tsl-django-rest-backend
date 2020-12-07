@@ -48,3 +48,14 @@ class AnonymousUserCreate(generics.CreateAPIView):
     def post(self, request):
         super().post(request).data
         return Response({"success": True}, status=201)
+
+def send_mail(email):
+    from django.core.mail import send_mail
+
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'from@example.com',
+        [email],
+        fail_silently=False,
+    )
