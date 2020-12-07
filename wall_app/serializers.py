@@ -5,8 +5,17 @@ from rest_framework import serializers
 from wall_app.models import WallPost
 
 
+class DisplayNameField(serializers.RelatedField):
+    def to_representation(self, value):
+        if value.first_name == "" or value.first_name is None:
+            return value.username
+        else:
+            return '{} {}'.format(value.first_name, value.last_name)
+
+
 class WallPostSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    # owner = serializers.ReadOnlyField(source='owner.username')
+    owner = DisplayNameField(read_only=True)
 
     class Meta:
         model = WallPost
@@ -16,11 +25,44 @@ class WallPostSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     wall_post = serializers.PrimaryKeyRelatedField(many=True, queryset=WallPost.objects.all())
+    display_name = serializers.SerializerMethodField()
+
+    def get_display_name(self, obj):
+        if obj.first_name == "" or obj.first_name is None:
+            return obj.username
+        else:
+            return '{} {}'.format(obj.first_name, obj.last_name)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'wall_post']
-        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True}, "username": {'required': True}}
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'display_name', 'wall_post']
+        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True}, "username": {'required': True},
+                        'wall_post': {'required': False}
+                        }
+
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True},
+                        "username": {'required': True}
+                        }
+
+    def create(self, validated_data):
+        user = User.objects.create(first_name=validated_data['first_name'], last_name=validated_data['last_name'],
+                                   email=validated_data['email'], username=validated_data['username'],
+                                   password=make_password(validated_data['password']))
+        return user
+
+
+class AnonymousUserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True},
+                        "username": {'required': True}
+                        }
 
     def create(self, validated_data):
         user = User.objects.create(email=validated_data['email'], username=validated_data['username'],

@@ -3,7 +3,7 @@ from rest_framework import viewsets, generics
 from rest_framework import permissions
 
 from wall_app.models import WallPost
-from wall_app.serializers import UserSerializer, WallPostSerializer
+from wall_app.serializers import UserSerializer, WallPostSerializer, UserCreateSerializer, AnonymousUserCreateSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -31,14 +31,20 @@ class WallPostViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        print(self.request.data)
         serializer.save(owner=self.request.user)
 
 
 class UserCreate(generics.CreateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
 
     def post(self, request):
         super().post(request).data
         return Response({"success": True}, status=201)
 
+
+class AnonymousUserCreate(generics.CreateAPIView):
+    serializer_class = AnonymousUserCreateSerializer
+
+    def post(self, request):
+        super().post(request).data
+        return Response({"success": True}, status=201)
