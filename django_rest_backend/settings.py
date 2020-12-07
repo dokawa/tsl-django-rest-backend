@@ -144,6 +144,8 @@ REST_FRAMEWORK = {
     ),
 }
 
+CORS_ORIGIN_REGEX_WHITELIST = (r'https?://localhost[:\d+]?', )
+
 
 
 
