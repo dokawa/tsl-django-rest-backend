@@ -41,6 +41,7 @@ urlpatterns = [
     path('message/<int:pk>/', wall_post_create, name='wall-post-create'),
     path('users/', user_list, name='user-list'),
     path('register/', views.UserCreate.as_view()),
+    path('enter-as-guest/', views.AnonymousUserCreate.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('token/', ObtainAuthToken.as_view()),
     # path('api-auth/', include('rest_framework.urls')),

@@ -6,11 +6,12 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.test import APIRequestFactory, force_authenticate
 
 from django_rest_backend import settings
-from wall_app.views import UserCreate, WallPostViewSet
-
+from wall_app.views import UserCreate, WallPostViewSet, send_welcome_mail
 
 user_data_1 = {'username': 'user1', 'first_name': 'user', 'last_name': 1, 'email': 'user1@email.com', 'password': 'password'}
 user_data_2 = {'username': 'user2', 'first_name': 'user', 'last_name': 2, 'email': 'user2@email.com', 'password': 'password'}
+
+
 
 
 class APITest(TestCase):
@@ -54,6 +55,9 @@ class APITest(TestCase):
         self.assertEquals(str(response.data['non_field_errors'][0]), 'Unable to log in with provided credentials.')
         self.assertEquals(response.data['non_field_errors'][0].code, 'authorization')
         self.assertEqual(response.status_code, 400)
+
+    def test_send_mail(self):
+        send_welcome_mail('instagram.travel.2019@gmail.com')
 
 
 
