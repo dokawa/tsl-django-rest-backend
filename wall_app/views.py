@@ -39,6 +39,7 @@ class UserCreate(generics.CreateAPIView):
 
     def post(self, request):
         super().post(request).data
+        # send_mail(request.data['email'])
         return Response({"success": True}, status=201)
 
 
@@ -55,7 +56,7 @@ def send_mail(email):
     send_mail(
         'Subject here',
         'Here is the message.',
-        'from@example.com',
+        '@example.com',
         [email],
         fail_silently=False,
     )

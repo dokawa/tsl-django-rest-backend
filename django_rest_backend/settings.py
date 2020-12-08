@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import configparser
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -146,10 +146,13 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_REGEX_WHITELIST = (r'https?://localhost[:\d+]?', )
 
+
+config = configparser.ConfigParser()
+config.read('credentials/credentials')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'yoorusername@gmail.com'
-EMAIL_HOST_PASSWORD = 'key' #past the key or password app here
+EMAIL_HOST_USER = config['default']['username']
+EMAIL_HOST_PASSWORD = config['default']['password']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
