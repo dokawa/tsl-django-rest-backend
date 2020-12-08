@@ -1,12 +1,8 @@
-import configparser
-import os
-
 from django.contrib.auth.models import User
 from django.test import TestCase
 
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory, force_authenticate
 
 from django_rest_backend import settings

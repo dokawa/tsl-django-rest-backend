@@ -14,7 +14,6 @@ class DisplayNameField(serializers.RelatedField):
 
 
 class WallPostSerializer(serializers.ModelSerializer):
-    # owner = serializers.ReadOnlyField(source='owner.username')
     owner = DisplayNameField(read_only=True)
 
     class Meta:
