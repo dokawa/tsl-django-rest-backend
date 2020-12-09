@@ -47,7 +47,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
-        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True, 'allow_blank': False, 'allow_null': False},
+        extra_kwargs = {'password': {'write_only': True},
+                        'first_name': {'required': True, 'allow_blank': False, 'allow_null': False},
+                        'last_name': {'required': True, 'allow_blank': False, 'allow_null': False},
+                        "email": {'required': True, 'allow_blank': False, 'allow_null': False},
                         "username": {'required': True}
                         }
 
@@ -63,7 +66,7 @@ class AnonymousUserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
-        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True},
+        extra_kwargs = {'password': {'write_only': True}, "email": {'required': True, 'allow_blank': False, 'allow_null': False},
                         "username": {'required': True}
                         }
 
