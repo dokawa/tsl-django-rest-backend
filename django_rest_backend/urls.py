@@ -14,13 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from rest_framework.authtoken.views import ObtainAuthToken
 
 from wall_app import views
 from wall_app.views import UserViewSet, WallPostViewSet
 
-from rest_framework.authtoken.views import obtain_auth_token
 
 user_list = UserViewSet.as_view({
     'get': 'list'
@@ -39,10 +38,9 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('message/', wall_post_list, name='wall-post-list'),
     path('message/<int:pk>/', wall_post_create, name='wall-post-create'),
-    path('users/', user_list, name='user-list'),
+    # path('users/', user_list, name='user-list'),
     path('register/', views.UserCreate.as_view()),
-    path('enter-as-guest/', views.AnonymousUserCreate.as_view()),
-    path('api-auth/', include('rest_framework.urls')),
-    path('token/', ObtainAuthToken.as_view()),
+    path('register-as-guest/', views.AnonymousUserCreate.as_view()),
     # path('api-auth/', include('rest_framework.urls')),
+    path('token/', ObtainAuthToken.as_view()),
 ]

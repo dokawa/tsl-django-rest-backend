@@ -7,7 +7,7 @@ from wall_app.serializers import UserSerializer, WallPostSerializer, UserCreateS
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from django.core.mail import send_mail
+from django.core import mail
 
 
 @api_view(['GET'])
@@ -54,10 +54,11 @@ class AnonymousUserCreate(generics.CreateAPIView):
 
 
 def send_welcome_mail(email):
-    send_mail(
+    mail.send_mail(
         'Welcome to Wall App',
         'Welcome to Wall App.',
         'tsl@gmail.com',
         [email],
         fail_silently=False,
     )
+    return mail

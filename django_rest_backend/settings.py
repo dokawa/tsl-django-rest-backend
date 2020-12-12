@@ -157,6 +157,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
 
+assert EMAIL_HOST_USER != None
+assert EMAIL_HOST_PASSWORD != None
+
 
 
 
