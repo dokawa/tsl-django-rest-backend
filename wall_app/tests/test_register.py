@@ -1,4 +1,7 @@
+from unittest.mock import Mock
+
 from django.contrib.auth.models import User
+from django.core import mail
 from django.test import TestCase
 
 from rest_framework.authtoken.models import Token
@@ -20,6 +23,11 @@ class APITest(TestCase):
         self.user.set_password(user_data['password'])
         self.user.save()
         self.user.auth_token = Token.objects.create(user=self.user)
+
+        # Prevents from sending real e-mails on tests
+        self.mock_mail = mail
+        self.mock_mail.send_mail = Mock()
+        self.factory = APIRequestFactory()
 
     def test_register_already_created_user(self):
         request = self.factory.post('/register', user_data)

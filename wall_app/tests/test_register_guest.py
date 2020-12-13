@@ -1,4 +1,7 @@
+from unittest.mock import Mock
+
 from django.contrib.auth.models import User
+from django.core import mail
 from django.test import TestCase
 
 from rest_framework.authtoken.models import Token
@@ -26,6 +29,11 @@ class APITest(TestCase):
         self.assertEqual(response.data['username'][0], 'A user with that username already exists.')
         self.assertEqual(response.data['username'][0].code, 'unique')
         self.assertEqual(response.status_code, 400)  # 400 bad request
+
+        # Prevents from sending real e-mails on tests
+        self.mock_mail = mail
+        self.mock_mail.send_mail = Mock()
+        self.factory = APIRequestFactory()
 
     def test_register_new_user(self):
         other_user_data = {'username': 'other_user', 'email': 'other_user@email.com', 'password': 'password'}

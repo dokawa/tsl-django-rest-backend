@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from unittest.mock import Mock
 
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -8,6 +9,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.test import APIRequestFactory
 
 from wall_app.views import UserCreate, AnonymousUserCreate
+
+from django.core import mail
 
 user_data = {'username': 'user', 'first_name': 'main', 'last_name': 'user', 'email': 'main_user@email.com',
              'password': 'password'}
@@ -22,6 +25,11 @@ class APITest(TestCase):
         self.user.set_password(user_data['password'])
         self.user.save()
         self.user.auth_token = Token.objects.create(user=self.user)
+
+        # Prevents from sending real e-mails on tests
+        self.mock_mail = mail
+        self.mock_mail.send_mail = Mock()
+        self.factory = APIRequestFactory()
 
     def test_register_new_user_and_get_token(self):
         other_user_data = {'username': 'other_user', 'first_name': 'other', 'last_name': "user",
