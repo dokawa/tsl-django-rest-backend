@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from unittest.mock import Mock
 
 from django.contrib.auth.models import User
@@ -50,7 +49,7 @@ class APITest(TestCase):
         request = self.factory.post('/register-as-guest', other_user_data)
         response = AnonymousUserCreate.as_view()(request)
         self.assertEqual(response.status_code, 201)  # 201 status created
-        self.assertEqual(response.data['success'], True)  # 201 status created
+        self.assertEqual(response.data['success'], True)
 
         request = self.factory.post('/token', other_user_data)
         response = ObtainAuthToken.as_view()(request)
@@ -74,6 +73,3 @@ class APITest(TestCase):
         self.assertEquals(response.data['non_field_errors'][0].code, 'authorization')
         self.assertEqual(response.status_code, 400)
 
-    # def test_send_mail(self):
-    #     mail = send_welcome_mail('instagram.travel.2019@gmail.com')
-    #     print(mail.outbox.)

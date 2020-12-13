@@ -2,7 +2,7 @@
 
 ### Prerequisites
 
-This project requires [Python](https://www.python.org/downloads/), [pip](https://pypi.org/project/pip/) and [VirtualEnv](https://pypi.org/project/virtualenv/) installed.
+This project requires [Python](https://www.python.org/downloads/), [pip](https://pypi.org/project/pip/) and [VirtualEnv](https://pypi.org/project/virtualenv/) installed
 
 It's also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) with [less secure apps enabled](https://support.google.com/accounts/answer/6010255?hl=en) 
 
@@ -22,7 +22,7 @@ cd tsl-django-rest-backend
 pip install -r requirements.txt
 ```
 
-### Defining credentials
+### Defining e-mail server credentials
 
 ```
 export EMAIL_HOST_USER = <your_username>
@@ -65,6 +65,8 @@ is simple and overall effective, but not the most secure
 in the repository although clearly not recommended on production applications
 * The Gmail e-mail account was chosen given it's popularity and little effort 
 needed to configure it to work with Django
+* The dbsqlite3 is included in the repository with pre-registered users and messages 
+in favor of simplicity to run the assignment and showcase some functionalities 
 
 ### Future work
 
