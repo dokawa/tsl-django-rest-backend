@@ -29,7 +29,7 @@ export EMAIL_HOST_USER = <your_username>
 export EMAIL_HOST_PASSWORD = <your_password>
 ```
 
-### Alternative method for credentials
+### Alternative method to define credentials
 Note: This step isn't necessary if the previous one was followed
 
 Create a file
