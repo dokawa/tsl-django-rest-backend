@@ -14,12 +14,28 @@ Clone the repository
 https://github.com/dokawa/tsl-django-rest-backend
 ```
 
+### Creating virtualenv
+
+On Linux
+
+```
+cd tsl-django-rest-backend
+python3 -m venv env
+source env/bin/activate
+```
+
+On Windows
+
+```
+python3 -m venv env
+cd env/Scripts
+activate.bat
+```
 
 Install the project dependencies
 
 ```
-cd tsl-django-rest-backend
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Defining e-mail server credentials
