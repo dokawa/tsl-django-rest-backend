@@ -4,7 +4,7 @@
 
 This project requires [Python](https://www.python.org/downloads/), [pip](https://pypi.org/project/pip/) and [VirtualEnv](https://pypi.org/project/virtualenv/) installed
 
-It's also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) with [less secure apps enabled](https://support.google.com/accounts/answer/6010255?hl=en) 
+It also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) with [less secure apps enabled](https://support.google.com/accounts/answer/6010255?hl=en) 
 
 The project is also hosted on [Heroku](https://tsl-react-frontend.herokuapp.com/)
 
@@ -31,6 +31,7 @@ source env/bin/activate
 On Windows
 
 ```
+cd tsl-django-rest-backend
 python3 -m venv env
 cd env/Scripts
 activate.bat
