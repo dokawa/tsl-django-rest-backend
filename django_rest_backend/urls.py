@@ -41,6 +41,6 @@ urlpatterns = [
     # path('users/', user_list, name='user-list'),
     path('register/', views.UserCreate.as_view()),
     path('register-as-guest/', views.AnonymousUserCreate.as_view()),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
     path('token/', ObtainAuthToken.as_view()),
 ]
