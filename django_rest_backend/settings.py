@@ -148,11 +148,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# CORS_ORIGIN_REGEX_WHITELIST = (r'https?://localhost[:\d+]?', r'https?://tsl-django-backend.herokuapp.com.*')
+CORS_ORIGIN_REGEX_WHITELIST = (r'https?://localhost[:\d+]?', r'https?://tsl-react-frontend.herokuapp.com.*')
 # CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "https://tsl-react-frontend.herokuapp.com",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://tsl-react-frontend.herokuapp.com", "http://localhost:3000"
+# ]
 
 config = configparser.ConfigParser()
 config.read('credentials/credentials')
