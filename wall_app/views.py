@@ -56,7 +56,7 @@ def send_welcome_mail(email):
     try:
         mail.send_mail(
             'Welcome to Wall App',
-            'Welcome to Wall App.',
+            'Welcome to Wall App.\nTo start using, just post a mesage!',
             'tsl@gmail.com',
             [email],
             fail_silently=False,

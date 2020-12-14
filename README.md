@@ -6,6 +6,10 @@ This project requires [Python](https://www.python.org/downloads/), [pip](https:/
 
 It's also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) with [less secure apps enabled](https://support.google.com/accounts/answer/6010255?hl=en) 
 
+The project is also hosted on [Heroku](https://tsl-react-frontend.herokuapp.com/)
+
+ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail (it could be corrected with a production e-mail service) the local version send it as requested in the assignment
+
 ### Installing
 
 Clone the repository
@@ -41,21 +45,20 @@ pip3 install -r requirements.txt
 ### Defining e-mail server credentials
 
 ```
-export EMAIL_HOST_USER = <your_username>
-export EMAIL_HOST_PASSWORD = <your_password>
+export EMAIL_HOST_USER = <your_gmail_username>
+export EMAIL_HOST_PASSWORD = <your_gmail_password>
 ```
 
 ### Alternative method to define credentials
 Note: This step isn't necessary if the previous one was followed
 
-Create a file
+Create a file named '.env' in the project root directory with the following info
 
 ```
-credentials/credentials
+DATABASE_URL=sqlite:///db.sqlite3
+EMAIL_HOST_USER=<your_gmail_username>
+EMAIL_HOST_PASSWORD=<your_email_password>
 ```
-
-Following the example of [credentials_example](https://github.com/dokawa/tsl-django-rest-backend/blob/master/credentials/credentials_example)
-
 
 ### Running the application
 
@@ -83,12 +86,13 @@ in the repository although clearly not recommended on production applications
 needed to configure it to work with Django, although not recommended to have your account in 
 this configuration or use Gmail in production 
 * The dbsqlite3 is included in the repository with pre-registered users and messages 
-in favor of simplicity to run the assignment and showcase some functionalities 
+in favor of simplicity to run the assignment 
 
 ### Future work
 
 * More secure authentication method like OAuth 2.0
 * Support for posting images, videos and urls
 * Use another method to send emails, possibly a third-party service
+* Use a html template for e-mails
 
  
