@@ -1,7 +1,6 @@
 env
 *.pyc
 .idea
-.env
 wall_app/migrations/
 
 
