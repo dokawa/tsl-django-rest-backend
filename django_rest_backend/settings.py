@@ -158,8 +158,6 @@ config = configparser.ConfigParser()
 config.read('credentials/credentials')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = config['default']['username']
-# EMAIL_HOST_PASSWORD = config['default']['password']
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
 EMAIL_PORT = 587

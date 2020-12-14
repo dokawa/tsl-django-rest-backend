@@ -54,11 +54,14 @@ class AnonymousUserCreate(generics.CreateAPIView):
 
 
 def send_welcome_mail(email):
-    mail.send_mail(
-        'Welcome to Wall App',
-        'Welcome to Wall App.',
-        'tsl@gmail.com',
-        [email],
-        fail_silently=False,
-    )
-    return mail
+    try:
+        mail.send_mail(
+            'Welcome to Wall App',
+            'Welcome to Wall App.',
+            'tsl@gmail.com',
+            [email],
+            fail_silently=False,
+        )
+        return mail
+    except:
+        return Response({"success": False}, status=420)

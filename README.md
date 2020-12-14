@@ -80,7 +80,8 @@ is simple and overall effective, but not the most secure
 * Still on the non criticality and security aspect, the SECRET_KEY of the application is included 
 in the repository although clearly not recommended on production applications
 * The Gmail e-mail account was chosen given it's popularity and little effort 
-needed to configure it to work with Django
+needed to configure it to work with Django, although not recommended to have your account in 
+this configuration or use Gmail in production 
 * The dbsqlite3 is included in the repository with pre-registered users and messages 
 in favor of simplicity to run the assignment and showcase some functionalities 
 
