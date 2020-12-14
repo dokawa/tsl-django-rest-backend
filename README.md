@@ -15,7 +15,7 @@ ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail
 Clone the repository
 
 ```
-https://github.com/dokawa/tsl-django-rest-backend
+git clone https://github.com/dokawa/tsl-django-rest-backend.git
 ```
 
 ### Creating virtualenv
