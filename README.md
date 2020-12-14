@@ -8,7 +8,7 @@ It's also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) w
 
 The project is also hosted on [Heroku](https://tsl-react-frontend.herokuapp.com/)
 
-ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail (it could be corrected with a production e-mail service) the local version send it as requested in the assignment
+ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail, (it could be corrected with a production e-mail service) the local version send it as requested in the assignment
 
 ### Installing
 
@@ -86,7 +86,7 @@ in the repository although clearly not recommended on production applications
 needed to configure it to work with Django, although not recommended to have your account in 
 this configuration or use Gmail in production 
 * The dbsqlite3 is included in the repository with pre-registered users and messages 
-in favor of simplicity to run the assignment 
+in favor of simplicity to run the assignment locally
 
 ### Future work
 
