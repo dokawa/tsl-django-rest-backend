@@ -41,7 +41,7 @@ class UserCreate(generics.CreateAPIView):
     def post(self, request):
         super().post(request).data
         send_welcome_mail(request.data['email'])
-        return Response({"success": True}, status=201)
+        return send_welcome_mail(request.data['email'])
 
 
 class AnonymousUserCreate(generics.CreateAPIView):
@@ -49,8 +49,7 @@ class AnonymousUserCreate(generics.CreateAPIView):
 
     def post(self, request):
         super().post(request).data
-        send_welcome_mail(request.data['email'])
-        return Response({"success": True}, status=201)
+        return send_welcome_mail(request.data['email'])
 
 
 def send_welcome_mail(email):
@@ -62,6 +61,6 @@ def send_welcome_mail(email):
             [email],
             fail_silently=False,
         )
-        return mail
+        return Response({"success": True}, status=201)
     except:
         return Response({"success": False}, status=420)
