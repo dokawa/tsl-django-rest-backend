@@ -8,7 +8,7 @@ It also needs a [gmail account](https://www.google.com/intl/pt/gmail/about/) wit
 
 The project is also hosted on [Heroku](https://tsl-react-frontend.herokuapp.com/)
 
-ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail, (it could be corrected with a production e-mail service) the local version send it as requested in the assignment
+ATTENTION: the hosted version does not send e-mails due to restrictions on Gmail (it could be corrected with a production e-mail service), the local version send it as requested in the assignment
 
 ### Installing
 
@@ -24,7 +24,7 @@ On Linux
 
 ```
 cd tsl-django-rest-backend
-python3 -m venv env
+python -m venv env
 source env/bin/activate
 ```
 
@@ -32,9 +32,10 @@ On Windows
 
 ```
 cd tsl-django-rest-backend
-python3 -m venv env
+python -m venv env
 cd env/Scripts
 activate.bat
+cd ../../
 ```
 
 Install the project dependencies
@@ -45,20 +46,22 @@ pip3 install -r requirements.txt
 
 ### Defining e-mail server credentials
 
-```
-export EMAIL_HOST_USER = <your_gmail_username>
-export EMAIL_HOST_PASSWORD = <your_gmail_password>
-```
+Create a file '.env' in the project root directory with the following configuration
 
-### Alternative method to define credentials
-Note: This step isn't necessary if the previous one was followed
-
-Create a file named '.env' in the project root directory with the following info
 
 ```
 DATABASE_URL=sqlite:///db.sqlite3
 EMAIL_HOST_USER=<your_gmail_username>
 EMAIL_HOST_PASSWORD=<your_email_password>
+```
+
+### Alternative method to define credentials
+Note: This step isn't necessary if the previous one was followed
+
+```
+export DATABASE_URL=sqlite:///db.sqlite3
+export EMAIL_HOST_USER = <your_gmail_username>
+export EMAIL_HOST_PASSWORD = <your_gmail_password>
 ```
 
 ### Running the application
