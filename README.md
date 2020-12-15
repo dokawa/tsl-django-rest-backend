@@ -46,8 +46,16 @@ pip3 install -r requirements.txt
 
 ### Defining e-mail server credentials
 
-Create a file '.env' in the project root directory with the following configuration
+On Linux
+```
+export DATABASE_URL=sqlite:///db.sqlite3
+export EMAIL_HOST_USER = <your_gmail_username>
+export EMAIL_HOST_PASSWORD = <your_gmail_password>
+```
 
+On Windows and alternative method for Linux
+
+Create a file '.env' in the project root directory with the following configuration
 
 ```
 DATABASE_URL=sqlite:///db.sqlite3
@@ -55,14 +63,7 @@ EMAIL_HOST_USER=<your_gmail_username>
 EMAIL_HOST_PASSWORD=<your_email_password>
 ```
 
-### Alternative method to define credentials
-Note: This step isn't necessary if the previous one was followed
 
-```
-export DATABASE_URL=sqlite:///db.sqlite3
-export EMAIL_HOST_USER = <your_gmail_username>
-export EMAIL_HOST_PASSWORD = <your_gmail_password>
-```
 
 ### Running the application
 
