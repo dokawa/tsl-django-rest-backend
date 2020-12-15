@@ -20,7 +20,7 @@ wall_post_create = WallPostViewSet.as_view({
 urlpatterns = [
     path('', wall_post_list, name='wall-post-detail'),
     # path('admin/', admin.site.urls),
-    path('message/', wall_post_list, name='wall-post-list'),
+    path('message/', wall_post_create, name='wall-post-list'),
     path('message/<int:pk>/', wall_post_create, name='wall-post-create'),
     # path('users/', user_list, name='user-list'),
     path('register/', views.UserCreate.as_view()),
