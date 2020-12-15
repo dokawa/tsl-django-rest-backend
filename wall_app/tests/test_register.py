@@ -83,3 +83,13 @@ class APITest(TestCase):
         self.assertEqual(response.status_code, 400)  # 400 status bad request
         self.assertEqual(str(response.data['password'][0]), 'This field is required.')
         self.assertEqual(response.data['password'][0].code, 'required')
+
+    def test_register_with_short_password(self):
+        other_user = {'username': 'other_user', 'first_name': 'other', 'last_name': 'user',
+                      'email': 'other_user@email.com', 'password': 'pass'}
+        request = self.factory.post('/register', other_user)
+        response = UserCreate.as_view()(request)
+        self.assertEqual(response.status_code, 400)  # 400 status bad request
+        self.assertEqual(str(response.data['password'][0]),
+                         'This password is too short. It must contain at least 8 characters.')
+        self.assertEqual(response.data['password'][0].code, 'password_too_short')

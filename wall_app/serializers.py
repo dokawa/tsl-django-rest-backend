@@ -1,6 +1,9 @@
+from gettext import ngettext
+
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from wall_app.models import WallPost
 
@@ -52,6 +55,19 @@ class UserCreateSerializer(serializers.ModelSerializer):
                         "username": {'required': True}
                         }
 
+    def validate_password(self, password):
+        min_length = 8
+        if len(password) < min_length:
+            raise ValidationError(
+                ngettext(
+                     "This password is too short. It must contain at least 1 character.",
+                     "This password is too short. It must contain at least {} characters.".format(min_length),
+                     min_length
+                ),
+                code='password_too_short',
+            )
+        return password
+
     def create(self, validated_data):
         user = User.objects.create(username=validated_data['username'], first_name=validated_data['first_name'],
                                    last_name=validated_data['last_name'], email=validated_data['email'],
@@ -66,6 +82,19 @@ class AnonymousUserCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}, "email": {'required': True, 'allow_blank': False,
                         'allow_null': False}, 'username': {'required': True}
                         }
+
+    def validate_password(self, password):
+        min_length = 8
+        if len(password) < min_length:
+            raise ValidationError(
+                ngettext(
+                     "This password is too short. It must contain at least 1 character.",
+                     "This password is too short. It must contain at least {} characters.".format(min_length),
+                     min_length
+                ),
+                code='password_too_short',
+            )
+        return password
 
     def create(self, validated_data):
         user = User.objects.create(username=validated_data['username'], email=validated_data['email'],
